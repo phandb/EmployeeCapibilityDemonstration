@@ -1,4 +1,4 @@
-﻿using EmployeeCapibilityDemonstration.Models;
+﻿using EmployeeCapibilityDemonstration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
