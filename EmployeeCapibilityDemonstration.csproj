@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
-    <Folder Include="ViewModels\Employee\" />
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Method\" />
     <Folder Include="Views\Employee\" />

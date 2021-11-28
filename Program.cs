@@ -1,5 +1,6 @@
 using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Interfaces;
+using EmployeeCapibilityDemonstration.Mappings;
 using EmployeeCapibilityDemonstration.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IMethodRepository, MethodRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
+
+// Add services for Automapper
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
