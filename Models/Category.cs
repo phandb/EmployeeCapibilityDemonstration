@@ -12,12 +12,8 @@ namespace EmployeeCapibilityDemonstration.Models
         public string Name { get; set; }
 
         // Naviagation property for Many-to-Many Relationship
-        public virtual ICollection<Employee> Employees { get; set; }
+        public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
 
-        // Constructor
-        public Category()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
+        
     }
 }

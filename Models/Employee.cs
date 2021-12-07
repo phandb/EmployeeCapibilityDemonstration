@@ -7,18 +7,16 @@ namespace EmployeeCapibilityDemonstration.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-        public DateTime HiredDate { get; set; }
+        public DateTime HiredDate { get; set; } = DateTime.Now;
+
+        public DateTime TakenDate { get; set; } = DateTime.Now;
+        public DateTime ExpiredDate { get; set; } = DateTime.Now;
 
         // Navigation Property for Many-to-Many Relationship
-        public virtual ICollection<Method> Methods { get; set; }
+        public ICollection<EmployeeMethod> EmployeeMethods { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
+        public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
 
-        // Constructor
-        public Employee()
-        {
-            this.Methods = new List<Method>();
-            this.Categories = new List<Category>();
-        }
+       
     }
 }

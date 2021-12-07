@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211126164413_InitialAdded")]
-    partial class InitialAdded
+    [Migration("20211207023308_RebuildTables")]
+    partial class RebuildTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,21 +23,6 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CategoryEmployee", b =>
-                {
-                    b.Property<string>("CategoriesCategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("EmployeesId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CategoriesCategoryId", "EmployeesId");
-
-                    b.HasIndex("EmployeesId");
-
-                    b.ToTable("CategoryEmployee");
-                });
 
             modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Category", b =>
                 {
@@ -71,6 +56,9 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("ExpiredDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -109,6 +97,9 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("TakenDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -129,16 +120,124 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.EmployeeCategory", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("EmployeeCategory");
+                });
+
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.EmployeeMethod", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MethodId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id", "MethodId");
+
+                    b.HasIndex("MethodId");
+
+                    b.ToTable("EmployeeMethod");
+                });
+
             modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Method", b =>
                 {
                     b.Property<string>("MethodId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("DateTaken")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpiredOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -147,21 +246,6 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                     b.HasKey("MethodId");
 
                     b.ToTable("Methods");
-                });
-
-            modelBuilder.Entity("EmployeeMethod", b =>
-                {
-                    b.Property<string>("EmployeesId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MethodsMethodId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("EmployeesId", "MethodsMethodId");
-
-                    b.HasIndex("MethodsMethodId");
-
-                    b.ToTable("EmployeeMethod");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -301,34 +385,42 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CategoryEmployee", b =>
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.EmployeeCategory", b =>
                 {
-                    b.HasOne("EmployeeCapibilityDemonstration.Models.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesCategoryId")
+                    b.HasOne("EmployeeCapibilityDemonstration.Models.Category", "Category")
+                        .WithMany("EmployeeCategories")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesId")
+                    b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", "Employee")
+                        .WithMany("EmployeeCategories")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("EmployeeMethod", b =>
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.EmployeeMethod", b =>
                 {
-                    b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeesId")
+                    b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", "Employee")
+                        .WithMany("EmployeeMethods")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EmployeeCapibilityDemonstration.Models.Method", null)
-                        .WithMany()
-                        .HasForeignKey("MethodsMethodId")
+                    b.HasOne("EmployeeCapibilityDemonstration.Models.Method", "Method")
+                        .WithMany("EmployeeMethods")
+                        .HasForeignKey("MethodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Method");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -380,6 +472,23 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Category", b =>
+                {
+                    b.Navigation("EmployeeCategories");
+                });
+
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Employee", b =>
+                {
+                    b.Navigation("EmployeeCategories");
+
+                    b.Navigation("EmployeeMethods");
+                });
+
+            modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Method", b =>
+                {
+                    b.Navigation("EmployeeMethods");
                 });
 #pragma warning restore 612, 618
         }
