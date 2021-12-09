@@ -30,6 +30,7 @@ namespace EmployeeCapibilityDemonstration.Controllers
             return View(methods);
         }
 
+        // Don't need Details here since model is so simple
         // GET: Methods/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -38,15 +39,16 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 return NotFound();
             }
 
-            var @method = await _context.Methods
+            var method = await _context.Methods
                 .FirstOrDefaultAsync(m => m.MethodId == id);
-            if (@method == null)
+            if (method == null)
             {
                 return NotFound();
             }
+            var methodVM = mapper.Map<MethodViewModel>(method);
+            return View(methodVM);
 
-            return View(@method);
-        }
+                   }
 
         // GET: Methods/Create
         public IActionResult Create()
@@ -79,12 +81,13 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 return NotFound();
             }
 
-            var @method = await _context.Methods.FindAsync(id);
-            if (@method == null)
+            var method = await _context.Methods.FindAsync(id);
+            if (method == null)
             {
                 return NotFound();
             }
-            return View(@method);
+            var methodVM = mapper.Map<MethodViewModel>(method);
+            return View(methodVM);
         }
 
         // POST: Methods/Edit/5
@@ -92,9 +95,9 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MethodId,Name,DateTaken,ExpiredOn")] Method @method)
+        public async Task<IActionResult> Edit(string id,  MethodViewModel methodVM)
         {
-            if (id != @method.MethodId)
+            if (id != methodVM.MethodId)
             {
                 return NotFound();
             }
@@ -103,12 +106,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
             {
                 try
                 {
-                    _context.Update(@method);
+                    // Convert view model type to database type
+                    var method = mapper.Map<Method>(methodVM);
+                    _context.Update(method);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MethodExists(@method.MethodId))
+                    if (!MethodExists(methodVM.MethodId))
                     {
                         return NotFound();
                     }
@@ -119,9 +124,11 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(@method);
+            return View(methodVM);
         }
-
+        /*  Will by pass the Get Deelte method and go straight to the confirmation delete
+            To do that we use javascript in the index file
+         */
         // GET: Methods/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -130,14 +137,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 return NotFound();
             }
 
-            var @method = await _context.Methods
+            var method = await _context.Methods
                 .FirstOrDefaultAsync(m => m.MethodId == id);
-            if (@method == null)
+            if (method == null)
             {
                 return NotFound();
             }
 
-            return View(@method);
+            return View(method);
         }
 
         // POST: Methods/Delete/5
@@ -145,8 +152,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var @method = await _context.Methods.FindAsync(id);
-            _context.Methods.Remove(@method);
+            var method = await _context.Methods.FindAsync(id);
+            _context.Methods.Remove(method);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

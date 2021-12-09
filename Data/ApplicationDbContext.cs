@@ -19,7 +19,7 @@ namespace EmployeeCapibilityDemonstration.Data
 
         public DbSet<Category> Categories { get; set; }
 
-        
+
 
 
         // public DbSet<MethodViewModel> MethodViewModel { get; set; }
@@ -29,9 +29,20 @@ namespace EmployeeCapibilityDemonstration.Data
         public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
         */
 
+   
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+
+            // Auto generate Primary Key 
+            builder.Entity<Method>()
+                .Property(m => m.MethodId)
+                .ValueGeneratedOnAdd();
+
+            builder.Entity<Category>()
+                .Property(m => m.CategoryId)
+                .ValueGeneratedOnAdd();
 
             //Many to many relationship between Employee and Method Using 2 one-to-many
             builder.Entity<EmployeeMethod>()

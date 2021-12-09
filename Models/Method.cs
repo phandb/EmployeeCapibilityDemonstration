@@ -11,13 +11,16 @@ namespace EmployeeCapibilityDemonstration.Models
         public string Name { get; set; }
 
         //  public string Type { get; set; }
-         //public DateTime DateTaken { get; set; }
-         //public DateTime ExpiredOn { get; set; }
+        //public DateTime DateTaken { get; set; }
+        //public DateTime ExpiredOn { get; set; }
 
 
         // Naviagation property for Many-to-Many Relationship
-        public ICollection<EmployeeMethod> EmployeeMethods{ get; set; }
+        public ICollection<EmployeeMethod> EmployeeMethods { get; set; }
 
-        
     }
+        
+    
 }
+
+
