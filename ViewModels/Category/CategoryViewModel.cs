@@ -5,11 +5,11 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Category
     public class CategoryViewModel
     {
         [Key]
-        public int CategoryId { get; set; }
+        public string? CategoryId { get; set; }
 
         [Required]
         [Display(Name="Category")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         //public List<CategoryViewModel> EmployeesByCategory { get; set; }
     }
 }

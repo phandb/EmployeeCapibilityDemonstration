@@ -1,10 +1,11 @@
-﻿@model EmployeeCapibilityDemonstration.Models.Category
+﻿@using EmployeeCapibilityDemonstration.ViewModels.Category
+@model CategoryViewModel;
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Details of @Model.Name</h1>
 
 <div>
     <h4>Category</h4>

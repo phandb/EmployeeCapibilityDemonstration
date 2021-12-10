@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Models;
 using AutoMapper;
+using EmployeeCapibilityDemonstration.ViewModels.Category;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
@@ -25,7 +21,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            var categories = mapper.Map<List<CategoryViewModel>>(await _context.Categories.ToListAsync());
+            return View(categories);
         }
 
         // GET: Categories/Details/5
@@ -42,6 +39,7 @@ namespace EmployeeCapibilityDemonstration.Controllers
             {
                 return NotFound();
             }
+            var categoryVM = mapper.Map<CategoryViewModel>(category);
 
             return View(category);
         }
@@ -57,41 +55,45 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Create(CategoryViewModel categoryVM)
         {
             if (ModelState.IsValid)
             {
+                var category = mapper.Map<Category>(categoryVM);  // Convert view model to model
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryVM);  // Reload VM if model state not valid
         }
 
-        // GET: Categories/Edit/5
+        // GET: Categories/Edit/5  --  Show model
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            // Find the model object
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
-            return View(category);
+
+            // Convert model object to view model
+            var categoryVM = mapper.Map<CategoryViewModel>(category);
+            return View(categoryVM);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Categories/Edit/5  --  This method processes the edit form
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Edit(string id, CategoryViewModel categoryVM)
         {
-            if (id != category.CategoryId)
+            if (id != categoryVM.CategoryId)
             {
                 return NotFound();
             }
@@ -100,12 +102,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
             {
                 try
                 {
+                    // Convert view model to the model
+                    var category = mapper.Map<Category>(categoryVM);
                     _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!CategoryExists(categoryVM.CategoryId))
                     {
                         return NotFound();
                     }
@@ -116,8 +120,12 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categoryVM);  //Reload the view model
         }
+
+        /*  Will by pass the Get Deelte method and go straight to the confirmation delete
+            To do that we use javascript in the index file
+         */
 
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(string id)
