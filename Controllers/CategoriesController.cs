@@ -4,44 +4,45 @@ using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Models;
 using AutoMapper;
 using EmployeeCapibilityDemonstration.ViewModels.Category;
+using EmployeeCapibilityDemonstration.Interfaces;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository categoryRepo;
         private readonly IMapper mapper;
 
-        public CategoriesController(ApplicationDbContext context, IMapper mapper)
+        /* Since using Generic Repository interface, no need to inject the DbContext in 
+         * Controller.  It is now handled by Generic Repository.
+         * An appropriate repository will be injected here in controller, for instance
+         * CategoryRepository is injected here
+         */
+        public CategoriesController(ICategoryRepository categoryRepo, IMapper mapper)
         {
-            _context = context;
+            this.categoryRepo = categoryRepo;
             this.mapper = mapper;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            var categories = mapper.Map<List<CategoryViewModel>>(await _context.Categories.ToListAsync());
+            var categories = mapper.Map<List<CategoryViewModel>>(await categoryRepo.GetAllAsync());
             return View(categories);
         }
 
         // GET: Categories/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            
+            var category = await categoryRepo.GetByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
             var categoryVM = mapper.Map<CategoryViewModel>(category);
 
-            return View(category);
+            return View(categoryVM);
         }
 
         // GET: Categories/Create
@@ -60,8 +61,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
             if (ModelState.IsValid)
             {
                 var category = mapper.Map<Category>(categoryVM);  // Convert view model to model
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                await categoryRepo.AddAsync(category);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(categoryVM);  // Reload VM if model state not valid
@@ -70,12 +71,9 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // GET: Categories/Edit/5  --  Show model
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
             // Find the model object
-            var category = await _context.Categories.FindAsync(id);
+            var category = await categoryRepo.GetByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -104,12 +102,12 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 {
                     // Convert view model to the model
                     var category = mapper.Map<Category>(categoryVM);
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    await categoryRepo.UpdateAsync(category);
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(categoryVM.CategoryId))
+                    if (!await categoryRepo.Exists(categoryVM.CategoryId))
                     {
                         return NotFound();
                     }
@@ -130,13 +128,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await categoryRepo.GetByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -150,15 +143,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            
+            await categoryRepo.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(string id)
+        private async Task<bool> CategoryExists(string id)
         {
-            return _context.Categories.Any(e => e.CategoryId == id);
+            return await categoryRepo.Exists(id);
         }
     }
 }

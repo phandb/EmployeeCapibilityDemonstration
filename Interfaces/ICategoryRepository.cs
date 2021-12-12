@@ -2,7 +2,7 @@
 
 namespace EmployeeCapibilityDemonstration.Interfaces
 {
-    public interface ICategoryRepository : IRepositoryBase<Category>
+    public interface ICategoryRepository : IGenericRepository<Category>
     {
         ICollection<Category> GetEmployeesByCategory(string categoryId);
     }

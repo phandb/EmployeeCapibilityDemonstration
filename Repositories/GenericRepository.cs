@@ -40,8 +40,12 @@ namespace EmployeeCapibilityDemonstration.Repositories
             return await context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(string id)
+        public async Task<T> GetByIdAsync(string? id)
         {
+            if (id == null)
+            {
+                return null;    
+            }
             return await context.Set<T>().FindAsync(id);
         }
 

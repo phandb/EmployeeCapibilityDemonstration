@@ -4,13 +4,13 @@ using EmployeeCapibilityDemonstration.Models;
 
 namespace EmployeeCapibilityDemonstration.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
         //  Inject the DbContext
         private readonly ApplicationDbContext _context;
 
         // Use constructor to initialize the Db context
-        public CategoryRepository(ApplicationDbContext context)
+        public CategoryRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
