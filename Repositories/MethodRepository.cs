@@ -4,16 +4,18 @@ using EmployeeCapibilityDemonstration.Models;
 
 namespace EmployeeCapibilityDemonstration.Repositories
 {
-    public class MethodRepository : IMethodRepository
+    public class MethodRepository :GenericRepository<Method>, IMethodRepository
     {
         // Inject DbContext
         private readonly ApplicationDbContext _context;
 
         // Initialize the DbContext via constructor
-        public MethodRepository(ApplicationDbContext context)
+        public MethodRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
+
+        // CRUD
         public bool Create(Method entity)
         {
             _context.Methods.Add(entity);
@@ -62,5 +64,34 @@ namespace EmployeeCapibilityDemonstration.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<Method> AddAsync(Method entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Method>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Method> GetByIdAsync(string? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(Method entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Exists(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
