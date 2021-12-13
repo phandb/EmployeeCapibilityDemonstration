@@ -9,38 +9,44 @@ using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Models;
 using AutoMapper;
 using EmployeeCapibilityDemonstration.ViewModels.Method;
+using EmployeeCapibilityDemonstration.Interfaces;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
     public class MethodsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        /* Since using Generic Repository interface, no need to inject the DbContext in 
+        * Controller.  It is now handled by Generic Repository.
+        * An appropriate repository will be injected here in controller, for instance
+        * IMethodRepository is injected here
+        */
+        
+        private readonly IMethodRepository methodRepo;
         private readonly IMapper mapper;
 
-        public MethodsController(ApplicationDbContext context, IMapper mapper)
+        public MethodsController(IMethodRepository methodRepo, IMapper mapper)
         {
-            _context = context;
+           
+            this.methodRepo = methodRepo;
             this.mapper = mapper;
         }
 
+
+        /****************************************************************/
         // GET: Methods
         public async Task<IActionResult> Index()
         {
-            var methods = mapper.Map<List<MethodViewModel>>(await _context.Methods.ToListAsync());
+            var methods = mapper.Map<List<MethodViewModel>>(await methodRepo.GetAllAsync());
             return View(methods);
         }
 
         // Don't need Details here since model is so simple
         // GET: Methods/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var method = await _context.Methods
-                .FirstOrDefaultAsync(m => m.MethodId == id);
+           
+            var method = await methodRepo.GetByIdAsync(id);
+               
             if (method == null)
             {
                 return NotFound();
@@ -48,7 +54,7 @@ namespace EmployeeCapibilityDemonstration.Controllers
             var methodVM = mapper.Map<MethodViewModel>(method);
             return View(methodVM);
 
-                   }
+        }
 
         // GET: Methods/Create
         public IActionResult Create()
@@ -66,8 +72,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
             if (ModelState.IsValid)
             {
                 var method = mapper.Map<Method>(methodVM);
-                _context.Add(method);
-                await _context.SaveChangesAsync();
+                await methodRepo.AddAsync(method);
+                
                 return RedirectToAction(nameof(Index));
             }
             return View(methodVM);
@@ -76,12 +82,9 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // GET: Methods/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
 
-            var method = await _context.Methods.FindAsync(id);
+            var method = await methodRepo.GetByIdAsync(id);
             if (method == null)
             {
                 return NotFound();
@@ -108,12 +111,11 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 {
                     // Convert view model type to database type
                     var method = mapper.Map<Method>(methodVM);
-                    _context.Update(method);
-                    await _context.SaveChangesAsync();
+                    await methodRepo.UpdateAsync(method);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MethodExists(methodVM.MethodId))
+                    if (!await methodRepo.Exists(methodVM.MethodId))
                     {
                         return NotFound();
                     }
@@ -137,8 +139,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
                 return NotFound();
             }
 
-            var method = await _context.Methods
-                .FirstOrDefaultAsync(m => m.MethodId == id);
+            var method = await methodRepo.GetByIdAsync(id);
+                
             if (method == null)
             {
                 return NotFound();
@@ -152,15 +154,13 @@ namespace EmployeeCapibilityDemonstration.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var method = await _context.Methods.FindAsync(id);
-            _context.Methods.Remove(method);
-            await _context.SaveChangesAsync();
+            await methodRepo.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MethodExists(string id)
+        private async Task<bool> MethodExists(string id)
         {
-            return _context.Methods.Any(e => e.MethodId == id);
+            return await methodRepo.Exists(id);
         }
     }
 }

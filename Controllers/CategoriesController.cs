@@ -24,6 +24,8 @@ namespace EmployeeCapibilityDemonstration.Controllers
             this.mapper = mapper;
         }
 
+
+        /****************************************************************/
         // GET: Categories
         public async Task<IActionResult> Index()
         {
