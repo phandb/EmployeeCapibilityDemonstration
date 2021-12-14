@@ -13,7 +13,7 @@ namespace EmployeeCapibilityDemonstration.Data
         {
         }
 
-        // no need to have Dbset for Employee here since it inherits Identity User
+        
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Method> Methods { get; set; }
 
@@ -73,6 +73,9 @@ namespace EmployeeCapibilityDemonstration.Data
                 .HasOne(c => c.Category)
                 .WithMany(ec => ec.EmployeeCategories)
                 .HasForeignKey(ec => ec.CategoryId);
+
+            // Configure Roles
+            builder.ApplyConfiguration(new RoleSeedConfiguration());
 
         }
     }

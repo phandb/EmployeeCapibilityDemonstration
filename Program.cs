@@ -27,6 +27,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 // Chnage IdentityUser to Employee
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 

@@ -10,7 +10,7 @@ namespace EmployeeCapibilityDemonstration.Repositories
         {
         }
 
-        // CRUD to database
+        // Its own method
 
         public ICollection<Category> GetEmployeesByCategory(string categoryId)
         {
