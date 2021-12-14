@@ -78,6 +78,7 @@ namespace EmployeeCapibilityDemonstration.Data
             // Configure Roles
             builder.ApplyConfiguration(new RoleSeedConfiguration());
             builder.ApplyConfiguration(new UserSeedConfiguration());
+            builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
         }
     }

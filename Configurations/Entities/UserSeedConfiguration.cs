@@ -19,6 +19,16 @@ namespace EmployeeCapibilityDemonstration.Configurations.Entities
                     FirstName = "System",
                     LastName = "Admin",
                     PasswordHash = hasher.HashPassword(null, "Thaihoa92@")
+                },
+
+                new Employee
+                {
+                    Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
+                    Email = "user@test.org",
+                    NormalizedEmail = "USER@TEST.ORG",
+                    FirstName = "System",
+                    LastName = "User",
+                    PasswordHash = hasher.HashPassword(null, "Thaihoa92@")
                 }
             );
         }
