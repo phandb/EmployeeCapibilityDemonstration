@@ -1,4 +1,5 @@
-﻿using EmployeeCapibilityDemonstration.Models;
+﻿using EmployeeCapibilityDemonstration.Configurations.Entities;
+using EmployeeCapibilityDemonstration.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -76,6 +77,7 @@ namespace EmployeeCapibilityDemonstration.Data
 
             // Configure Roles
             builder.ApplyConfiguration(new RoleSeedConfiguration());
+            builder.ApplyConfiguration(new UserSeedConfiguration());
 
         }
     }

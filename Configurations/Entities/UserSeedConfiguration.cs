@@ -1,0 +1,26 @@
+﻿using EmployeeCapibilityDemonstration.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace EmployeeCapibilityDemonstration.Configurations.Entities
+{
+    public class UserSeedConfiguration : IEntityTypeConfiguration<Employee>
+    {
+        public void Configure(EntityTypeBuilder<Employee> builder)
+        {
+            var hasher = new PasswordHasher<Employee>();
+            builder.HasData(
+                new Employee
+                {
+                    Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
+                    Email = "admin@test.org",
+                    NormalizedEmail = "ADMIN@TEST.ORG",
+                    FirstName = "System",
+                    LastName = "Admin",
+                    PasswordHash = hasher.HashPassword(null, "Thaihoa92@")
+                }
+            );
+        }
+    }
+}
