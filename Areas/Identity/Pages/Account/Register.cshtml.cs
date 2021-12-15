@@ -94,7 +94,7 @@ namespace EmployeeCapibilityDemonstration.Areas.Identity.Pages.Account
 
             [DataType(DataType.Date)]
             [Display(Name = "Hired Date")]
-            public DateTime HiredDate { get; set; }
+            public DateTime? HiredDate { get; set; }  // ? means nullable
 
             //--------------------------------------
 
@@ -140,7 +140,7 @@ namespace EmployeeCapibilityDemonstration.Areas.Identity.Pages.Account
                 // Additional Fields
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.HiredDate = Input.HiredDate;
+                user.HiredDate = Input.HiredDate ?? default;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
