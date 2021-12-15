@@ -10,9 +10,11 @@ using EmployeeCapibilityDemonstration.Models;
 using AutoMapper;
 using EmployeeCapibilityDemonstration.ViewModels.Method;
 using EmployeeCapibilityDemonstration.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class MethodsController : Controller
     {
         /* Since using Generic Repository interface, no need to inject the DbContext in 
