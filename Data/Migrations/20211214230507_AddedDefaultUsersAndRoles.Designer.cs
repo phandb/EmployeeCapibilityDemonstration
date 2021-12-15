@@ -4,6 +4,7 @@ using EmployeeCapibilityDemonstration.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211214230507_AddedDefaultUsersAndRoles")]
+    partial class AddedDefaultUsersAndRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,43 +125,39 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                         {
                             Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "52e4ca2f-32b8-4727-8812-cab3cd187056",
+                            ConcurrencyStamp = "01af037a-db54-4058-8e50-ec7d70aa2d1b",
                             Email = "admin@test.org",
-                            EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2021, 12, 14, 17, 20, 22, 183, DateTimeKind.Local).AddTicks(4971),
+                            EmailConfirmed = false,
+                            ExpiredDate = new DateTime(2021, 12, 14, 17, 5, 7, 285, DateTimeKind.Local).AddTicks(1929),
                             FirstName = "System",
-                            HiredDate = new DateTime(2021, 12, 14, 17, 20, 22, 183, DateTimeKind.Local).AddTicks(4928),
+                            HiredDate = new DateTime(2021, 12, 14, 17, 5, 7, 285, DateTimeKind.Local).AddTicks(1893),
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.ORG",
-                            NormalizedUserName = "ADMIN@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDEh9ID7MGxR3KN75D4GXRJBPd5tVVjig6OgBkyh6q/S4J7f4q0guthgCd70nTcf1g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEELdH9UlEoCgKMuWCcpdzGqjer6sOQk8isoPxkbtdXFtDlF3prSo0gtZr1b9j++LeA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "33dbe3af-97d9-4d68-bfd6-fde4883c4393",
-                            TakenDate = new DateTime(2021, 12, 14, 17, 20, 22, 183, DateTimeKind.Local).AddTicks(4969),
-                            TwoFactorEnabled = false,
-                            UserName = "admin@test.org"
+                            SecurityStamp = "9212cdfd-ca8b-42aa-93d7-b55f1a25bd37",
+                            TakenDate = new DateTime(2021, 12, 14, 17, 5, 7, 285, DateTimeKind.Local).AddTicks(1927),
+                            TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "034dd254-3690-416c-9648-c11388201700",
+                            ConcurrencyStamp = "d7119cd9-3b99-4dd5-a87e-368df03912fb",
                             Email = "user@test.org",
-                            EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2021, 12, 14, 17, 20, 22, 186, DateTimeKind.Local).AddTicks(2189),
+                            EmailConfirmed = false,
+                            ExpiredDate = new DateTime(2021, 12, 14, 17, 5, 7, 287, DateTimeKind.Local).AddTicks(4689),
                             FirstName = "System",
-                            HiredDate = new DateTime(2021, 12, 14, 17, 20, 22, 186, DateTimeKind.Local).AddTicks(2166),
+                            HiredDate = new DateTime(2021, 12, 14, 17, 5, 7, 287, DateTimeKind.Local).AddTicks(4682),
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@TEST.ORG",
-                            NormalizedUserName = "USER@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGsRgfe18KkDNUYxwqvAWQBoSJG4YheOegxCXbCTbCaj0Tqm3fqL59+Nxqj4GU6Qcw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDsmSLEMim3nLaQswIgoKEwkti7whJut17Y61yATb767E1E64A5MkkH/GFrZRiAN5g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc7be69c-7194-4737-a4cf-b1cb4b72a742",
-                            TakenDate = new DateTime(2021, 12, 14, 17, 20, 22, 186, DateTimeKind.Local).AddTicks(2186),
-                            TwoFactorEnabled = false,
-                            UserName = "user@test.org"
+                            SecurityStamp = "bd9a93a6-9a0b-4911-8122-8e2fd93fc133",
+                            TakenDate = new DateTime(2021, 12, 14, 17, 5, 7, 287, DateTimeKind.Local).AddTicks(4687),
+                            TwoFactorEnabled = false
                         });
                 });
 
@@ -322,14 +320,14 @@ namespace EmployeeCapibilityDemonstration.Data.Migrations
                         new
                         {
                             Id = "e4583f62-6e7c-47f3-a203-33fdf46b6erc",
-                            ConcurrencyStamp = "debbc1ff-0b6d-41c8-89b7-6e4ae4802e4d",
+                            ConcurrencyStamp = "13db11a1-e6bb-477e-b347-79a3c683b57d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e4583d62-6e7c-47a3-a303-33fds46b6edc",
-                            ConcurrencyStamp = "9e5650d7-d9e4-45ae-bf68-bb7f643ee31b",
+                            ConcurrencyStamp = "fc6123b8-e660-47ea-abac-b25fbf8cc849",
                             Name = "User",
                             NormalizedName = "USER"
                         });
