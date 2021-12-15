@@ -6,10 +6,11 @@ using AutoMapper;
 using EmployeeCapibilityDemonstration.ViewModels.Category;
 using EmployeeCapibilityDemonstration.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using EmployeeCapibilityDemonstration.Constants;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = Roles.Administrator)]
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository categoryRepo;
