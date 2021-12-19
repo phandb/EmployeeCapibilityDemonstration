@@ -2,6 +2,7 @@
 using EmployeeCapibilityDemonstration.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using EmployeeCapibilityDemonstration.ViewModels.Employee;
 
 
 namespace EmployeeCapibilityDemonstration.Data
@@ -60,7 +61,7 @@ namespace EmployeeCapibilityDemonstration.Data
                 .WithMany(em => em.EmployeeMethods)
                 .HasForeignKey(em => em.MethodId);
                 
-
+            
             //Many to many relationship between Employee and Category
             builder.Entity<EmployeeCategory>()
                 .HasKey(ec => new { ec.Id, ec.CategoryId });
@@ -74,6 +75,7 @@ namespace EmployeeCapibilityDemonstration.Data
                 .HasOne(c => c.Category)
                 .WithMany(ec => ec.EmployeeCategories)
                 .HasForeignKey(ec => ec.CategoryId);
+            
 
             // Configure Roles
             builder.ApplyConfiguration(new RoleSeedConfiguration());
@@ -81,5 +83,18 @@ namespace EmployeeCapibilityDemonstration.Data
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
         }
+
+
+
+
+        // public DbSet<MethodViewModel> MethodViewModel { get; set; }
+        /*
+        public DbSet<EmployeeViewModel> EmployeeViewModel { get; set; }
+        
+        public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
+        */
+
+   
+        // public DbSet<EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeListViewModel> EmployeeListViewModel { get; set; }
     }
 }
