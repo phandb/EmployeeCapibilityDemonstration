@@ -15,7 +15,7 @@ namespace EmployeeCapibilityDemonstration.Data
         {
         }
 
-        
+
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Method> Methods { get; set; }
 
@@ -24,17 +24,14 @@ namespace EmployeeCapibilityDemonstration.Data
 
 
 
-        // public DbSet<MethodViewModel> MethodViewModel { get; set; }
-        /*
-        public DbSet<EmployeeViewModel> EmployeeViewModel { get; set; }
-        
-        public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
-        */
-
-   
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            // Configure Roles
+            builder.ApplyConfiguration(new RoleSeedConfiguration());
+            builder.ApplyConfiguration(new UserSeedConfiguration());
+            builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
 
             // Auto generate Primary Key 
@@ -53,48 +50,36 @@ namespace EmployeeCapibilityDemonstration.Data
             builder.Entity<EmployeeMethod>()
                 .HasOne(e => e.Employee)
                 .WithMany(em => em.EmployeeMethods)
-                .HasForeignKey(em => em.Id);
+                .HasForeignKey(em => em.Id)
+                .OnDelete(DeleteBehavior.Restrict); ;
             //.IsRequired();
 
             builder.Entity<EmployeeMethod>()
                 .HasOne(m => m.Method)
                 .WithMany(em => em.EmployeeMethods)
-                .HasForeignKey(em => em.MethodId);
-                
-            
-            //Many to many relationship between Employee and Category
-            builder.Entity<EmployeeCategory>()
-                .HasKey(ec => new { ec.Id, ec.CategoryId });
+                .HasForeignKey(em => em.MethodId)
+                .OnDelete(DeleteBehavior.Restrict); ;
 
-            builder.Entity<EmployeeCategory>()
-                .HasOne(e => e.Employee)
-                .WithMany(ec => ec.EmployeeCategories)
-                .HasForeignKey(ec => ec.Id);
 
-            builder.Entity<EmployeeCategory>()
-                .HasOne(c => c.Category)
-                .WithMany(ec => ec.EmployeeCategories)
-                .HasForeignKey(ec => ec.CategoryId);
-            
+            // One Method has many category relationship
+            builder.Entity<Category>()
+                .HasOne<Method>(m => m.Method)
+                .WithMany(c => c.Categories)
+                .HasForeignKey(c => c.MethodId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure Roles
-            builder.ApplyConfiguration(new RoleSeedConfiguration());
-            builder.ApplyConfiguration(new UserSeedConfiguration());
-            builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
+
+
+            // public DbSet<MethodViewModel> MethodViewModel { get; set; }
+            /*
+            public DbSet<EmployeeViewModel> EmployeeViewModel { get; set; }
+
+            public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
+            */
+
+
+            // public DbSet<EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeListViewModel> EmployeeListViewModel { get; set; }
         }
-
-
-
-
-        // public DbSet<MethodViewModel> MethodViewModel { get; set; }
-        /*
-        public DbSet<EmployeeViewModel> EmployeeViewModel { get; set; }
-        
-        public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
-        */
-
-   
-        // public DbSet<EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeListViewModel> EmployeeListViewModel { get; set; }
     }
 }

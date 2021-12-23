@@ -15,7 +15,7 @@ namespace EmployeeCapibilityDemonstration.Models
         // Navigation Property for Many-to-Many Relationship
         public ICollection<EmployeeMethod> EmployeeMethods { get; set; }
 
-        public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
+       // public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
 
        
     }
