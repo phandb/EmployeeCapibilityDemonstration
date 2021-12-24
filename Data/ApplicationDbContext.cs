@@ -62,12 +62,13 @@ namespace EmployeeCapibilityDemonstration.Data
 
 
             // One Method has many category relationship
+            /*
             builder.Entity<Category>()
                 .HasOne<Method>(m => m.Method)
                 .WithMany(c => c.Categories)
                 .HasForeignKey(c => c.MethodId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            */
 
 
 
