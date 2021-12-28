@@ -81,5 +81,34 @@ namespace EmployeeCapibilityDemonstration.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<Employee> AddAsync(Employee entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Employee>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Employee> GetByIdAsync(string? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(Employee entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Exists(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

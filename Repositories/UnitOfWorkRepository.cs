@@ -18,14 +18,15 @@ namespace EmployeeCapibilityDemonstration.Repositories
 
         }
         public IEmployeeRepository Employee => _employeeRepo = _employeeRepo ?? new EmployeeRepository(_context);
-
+        
         public IMethodRepository Method
         {
             get
             {
-                return _methodRepo = _methodRepo ?? new MethodRepository(_context);   
+                return _methodRepo = _methodRepo ?? new MethodRepository(_context, _categoryRepo);   
             }
         }
+        
 
         public ICategoryRepository Category
         {

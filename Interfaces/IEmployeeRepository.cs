@@ -2,7 +2,7 @@
 
 namespace EmployeeCapibilityDemonstration.Interfaces
 {
-    public interface IEmployeeRepository : IRepositoryBase<Employee>
+    public interface IEmployeeRepository : IGenericRepository<Employee>
     {
         //ICollection<Employee> GetMethodsByEmployee(string id);
         ICollection<Employee> GetMethodsByEmployee(Employee employee);

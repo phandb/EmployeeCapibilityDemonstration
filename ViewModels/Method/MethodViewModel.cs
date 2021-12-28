@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EmployeeCapibilityDemonstration.ViewModels.Category;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeCapibilityDemonstration.ViewModels.Method
 {
@@ -11,6 +13,16 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         [Display(Name = "Method Name")]
         public string? Name { get; set; }
 
-        // public List<MethodViewModel> EmployeesByMethod { get; set; }
+
+        // Two fields provided for dropdown list. 
+        // one for the selected item
+        // One for the list which is made up of a collection of SelectListItem
+
+        [Required, Display(Name = "Category")]
+        public string SelectedCategory { get; set; }
+        public IEnumerable<SelectListItem> Categories{ get; set; }
+
+
+
     }
 }

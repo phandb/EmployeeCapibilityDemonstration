@@ -4,6 +4,7 @@ using EmployeeCapibilityDemonstration.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211228055536_UpdateOneMethodManyCategoryRelationship")]
+    partial class UpdateOneMethodManyCategoryRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,20 +140,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "16f486dc-9e3a-436e-856c-7bcdf71757ce",
+                            ConcurrencyStamp = "ec7ef2ce-3958-4d65-a76a-5d3f5b3b4503",
                             Email = "admin@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2021, 12, 28, 0, 19, 13, 164, DateTimeKind.Local).AddTicks(9183),
+                            ExpiredDate = new DateTime(2021, 12, 27, 23, 55, 35, 593, DateTimeKind.Local).AddTicks(983),
                             FirstName = "System",
-                            HiredDate = new DateTime(2021, 12, 28, 0, 19, 13, 164, DateTimeKind.Local).AddTicks(9117),
+                            HiredDate = new DateTime(2021, 12, 27, 23, 55, 35, 593, DateTimeKind.Local).AddTicks(867),
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.ORG",
                             NormalizedUserName = "ADMIN@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDWBkQBIAl15HzZev7yA3+D28G199xtPcQKl4nv+i+AIqagmEB+392FQ/+ny7HQtfA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ+k0862A/yUUZd19RdCrpv5CL/AbAxQNegx2bYGXgxv3wi5y4IdrHEM9NtoSAU2Yw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "11737788-3339-4db5-b5a3-66e267926d37",
-                            TakenDate = new DateTime(2021, 12, 28, 0, 19, 13, 164, DateTimeKind.Local).AddTicks(9179),
+                            SecurityStamp = "3e137689-dbf0-4375-bf4e-f242c669d574",
+                            TakenDate = new DateTime(2021, 12, 27, 23, 55, 35, 593, DateTimeKind.Local).AddTicks(977),
                             TwoFactorEnabled = false,
                             UserName = "admin@test.org"
                         },
@@ -159,20 +161,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "be4a30d4-b81d-47fc-b555-4e9e7939b030",
+                            ConcurrencyStamp = "6f7d46dd-e636-4dd6-bb2b-0a1808f918d7",
                             Email = "user@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2021, 12, 28, 0, 19, 13, 169, DateTimeKind.Local).AddTicks(3373),
+                            ExpiredDate = new DateTime(2021, 12, 27, 23, 55, 35, 598, DateTimeKind.Local).AddTicks(8461),
                             FirstName = "System",
-                            HiredDate = new DateTime(2021, 12, 28, 0, 19, 13, 169, DateTimeKind.Local).AddTicks(3335),
+                            HiredDate = new DateTime(2021, 12, 27, 23, 55, 35, 598, DateTimeKind.Local).AddTicks(8331),
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@TEST.ORG",
                             NormalizedUserName = "USER@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPg6VviK3z5GT8rjjldG5fnSvdGVCFbxTzwaMHs1VY+14HfRf9cSs/jHrdojcRmElw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAn/3AFMmuiu2ODscnHhFrPNb6V9/MnWKCmujkXEnBhcjQbqGxwL2IjWTH3ElXf97w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3b8ac819-d244-4289-b3ec-c18d07229d7c",
-                            TakenDate = new DateTime(2021, 12, 28, 0, 19, 13, 169, DateTimeKind.Local).AddTicks(3369),
+                            SecurityStamp = "ff8e3ea7-f038-43ce-97b3-3ad73a440688",
+                            TakenDate = new DateTime(2021, 12, 27, 23, 55, 35, 598, DateTimeKind.Local).AddTicks(8457),
                             TwoFactorEnabled = false,
                             UserName = "user@test.org"
                         });
@@ -280,14 +282,14 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         new
                         {
                             Id = "e4583f62-6e7c-47f3-a203-33fdf46b6erc",
-                            ConcurrencyStamp = "56c3ccee-c0ed-4f89-aaff-09123194935b",
+                            ConcurrencyStamp = "235f9e6e-ad7d-45d1-9b97-fba872adf8bd",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e4583d62-6e7c-47a3-a303-33fds46b6edc",
-                            ConcurrencyStamp = "7cbc3437-3714-4f22-8752-14c03147b951",
+                            ConcurrencyStamp = "c3ef872e-d8c0-4ca1-a572-208f328a9f3d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -420,13 +422,13 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Category", null)
                         .WithMany()
                         .HasForeignKey("CategoriesCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Method", null)
                         .WithMany()
                         .HasForeignKey("MethodId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -454,7 +456,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -463,7 +465,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -472,7 +474,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -481,13 +483,13 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -496,7 +498,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasOne("EmployeeCapibilityDemonstration.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

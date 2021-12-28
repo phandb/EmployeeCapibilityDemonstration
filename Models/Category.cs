@@ -12,14 +12,16 @@ namespace EmployeeCapibilityDemonstration.Models
         [Required]
         public string Name { get; set; }
 
-        // Auing Fluent API to define One to many relationship
-       // public string MethodId { get; set; }
+        public ICollection<Method> Method { get; set; }
 
-       // public Method Method { get; set; }
+        // Navigation property of One Method Many Category relationship
+
+        // public string? MethodId { get; set; }
+        // public Method Method  { get; set; }
 
         // Naviagation property for Many-to-Many Relationship
         // public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
 
-        
+
     }
 }

@@ -43,6 +43,9 @@ namespace EmployeeCapibilityDemonstration.Data
                 .Property(m => m.CategoryId)
                 .ValueGeneratedOnAdd();
 
+            // 
+            
+
             //Many to many relationship between Employee and Method Using 2 one-to-many
             builder.Entity<EmployeeMethod>()
                 .HasKey(em => new { em.Id, em.MethodId });
@@ -62,25 +65,22 @@ namespace EmployeeCapibilityDemonstration.Data
 
 
             // One Method has many category relationship
+        
             /*
             builder.Entity<Category>()
                 .HasOne<Method>(m => m.Method)
                 .WithMany(c => c.Categories)
                 .HasForeignKey(c => c.MethodId)
                 .OnDelete(DeleteBehavior.Restrict);
+           
             */
 
 
-
-            // public DbSet<MethodViewModel> MethodViewModel { get; set; }
-            /*
-            public DbSet<EmployeeViewModel> EmployeeViewModel { get; set; }
-
-            public DbSet<CategoryViewModel> CategoryViewModel { get; set; }
-            */
-
-
-            // public DbSet<EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeListViewModel> EmployeeListViewModel { get; set; }
+           foreach (var foreignKey in builder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }
