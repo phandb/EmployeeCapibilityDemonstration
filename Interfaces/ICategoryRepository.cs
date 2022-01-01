@@ -1,4 +1,5 @@
 ﻿using EmployeeCapibilityDemonstration.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EmployeeCapibilityDemonstration.Interfaces
 {
@@ -6,5 +7,7 @@ namespace EmployeeCapibilityDemonstration.Interfaces
     {
         //  Its own method
         ICollection<Category> GetEmployeesByCategory(string categoryId);
+
+        IEnumerable<SelectListItem> GetCategories();
     }
 }

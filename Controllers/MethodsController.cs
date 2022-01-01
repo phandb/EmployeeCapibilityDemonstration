@@ -12,6 +12,7 @@ using EmployeeCapibilityDemonstration.ViewModels.Method;
 using EmployeeCapibilityDemonstration.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using EmployeeCapibilityDemonstration.Constants;
+using EmployeeCapibilityDemonstration.Repositories;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
@@ -25,12 +26,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
         */
         
         private readonly IMethodRepository methodRepo;
+        private readonly ICategoryRepository categoryRepo;
         private readonly IMapper mapper;
 
-        public MethodsController(IMethodRepository methodRepo, IMapper mapper)
+        public MethodsController(IMethodRepository methodRepo, ICategoryRepository categoryRepo, IMapper mapper)
         {
            
             this.methodRepo = methodRepo;
+            this.categoryRepo = categoryRepo;
             this.mapper = mapper;
         }
 
@@ -62,6 +65,9 @@ namespace EmployeeCapibilityDemonstration.Controllers
         // GET: Methods/Create
         public IActionResult Create()
         {
+            // IEnumerable<SelectListItem> categories = categoryRepo.GetCategories();
+            
+
             return View();
         }
 

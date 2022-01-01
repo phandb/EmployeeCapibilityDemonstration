@@ -13,9 +13,10 @@ namespace EmployeeCapibilityDemonstration.Models
         public DateTime ExpiredDate { get; set; } = DateTime.Now;
 
         // Navigation Property for Many-to-Many Relationship
-        public ICollection<EmployeeMethod> EmployeeMethods { get; set; }
+        public ICollection<Method> Methods { get; set; }
 
-       // public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
+        // Navigation property 
+        public ICollection<Category> Category { get; set; }
 
        
     }

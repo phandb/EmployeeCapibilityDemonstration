@@ -47,6 +47,7 @@ namespace EmployeeCapibilityDemonstration.Data
             
 
             //Many to many relationship between Employee and Method Using 2 one-to-many
+            /*
             builder.Entity<EmployeeMethod>()
                 .HasKey(em => new { em.Id, em.MethodId });
 
@@ -62,7 +63,7 @@ namespace EmployeeCapibilityDemonstration.Data
                 .WithMany(em => em.EmployeeMethods)
                 .HasForeignKey(em => em.MethodId)
                 .OnDelete(DeleteBehavior.Restrict); ;
-
+            */
 
             // One Method has many category relationship
         

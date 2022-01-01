@@ -17,12 +17,12 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         // Two fields provided for dropdown list. 
         // one for the selected item
         // One for the list which is made up of a collection of SelectListItem
-
+        /*
         [Required, Display(Name = "Category")]
         public string SelectedCategory { get; set; }
-        public IEnumerable<SelectListItem> Categories{ get; set; }
+        public ICollection<SelectListItem> Categories{ get; set; }
 
-
+        */
 
     }
 }

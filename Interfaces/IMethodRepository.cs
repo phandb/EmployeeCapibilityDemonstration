@@ -1,4 +1,7 @@
 ﻿using EmployeeCapibilityDemonstration.Models;
+using EmployeeCapibilityDemonstration.ViewModels.Method;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace EmployeeCapibilityDemonstration.Interfaces
 {
@@ -8,7 +11,9 @@ namespace EmployeeCapibilityDemonstration.Interfaces
 
         ICollection<Category> GetCategoriesByMethod(string methodId);
 
-        Task<List<Category>> GetCategories();
+        IEnumerable<SelectListItem> GetMethods();
+        IEnumerable<SelectListItem> GetCategories();
+        //MethodViewModel CreateMethod();
 
     }
 }
