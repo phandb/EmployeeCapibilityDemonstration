@@ -4,6 +4,7 @@ using EmployeeCapibilityDemonstration.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220101041216_UpdateRelationships")]
+    partial class UpdateRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,20 +130,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e5548a45-e721-453b-b5e7-2aee245467b4",
+                            ConcurrencyStamp = "22a4ead9-067d-46d3-9693-28dd31f3084b",
                             Email = "admin@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4467),
+                            ExpiredDate = new DateTime(2021, 12, 31, 22, 12, 15, 316, DateTimeKind.Local).AddTicks(4060),
                             FirstName = "System",
-                            HiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4389),
+                            HiredDate = new DateTime(2021, 12, 31, 22, 12, 15, 316, DateTimeKind.Local).AddTicks(4002),
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.ORG",
                             NormalizedUserName = "ADMIN@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGpVbNOzxKGy4hGZojsE/gtwskabCKc0Q6IK+SoWS702ex+P90jkvpa937+rPd44Gw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEdO7/r1kfKr/fT2QC95ra+lnAbRZYkLiHs89T4kFQrvlgtM7fOlpYGzF9QAATcBqQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ccefe8c3-62b6-4861-8422-b6c6687b2e5f",
-                            TakenDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4460),
+                            SecurityStamp = "3260c925-8eb8-4882-8690-3ce6838bb5c7",
+                            TakenDate = new DateTime(2021, 12, 31, 22, 12, 15, 316, DateTimeKind.Local).AddTicks(4057),
                             TwoFactorEnabled = false,
                             UserName = "admin@test.org"
                         },
@@ -149,20 +151,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b47c6091-5017-49cc-9f4d-1b630429035f",
+                            ConcurrencyStamp = "b986583e-9745-41a7-bd1c-76df2bd8900b",
                             Email = "user@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8490),
+                            ExpiredDate = new DateTime(2021, 12, 31, 22, 12, 15, 321, DateTimeKind.Local).AddTicks(3304),
                             FirstName = "System",
-                            HiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8429),
+                            HiredDate = new DateTime(2021, 12, 31, 22, 12, 15, 321, DateTimeKind.Local).AddTicks(3231),
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@TEST.ORG",
                             NormalizedUserName = "USER@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDR0DShxQDpDrO9gLS80MIEyIfP53QtMSf7CU+PUZRMjLZipuOtDDsXfwOPZuCjAzg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPg/yCWD7T30GFsjmnx47GvtYeAKz3LFIS7W7MhMnyozZExC6y97CvzdNKIcrtLWpA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "015b6c61-eadb-4eae-a67a-60418694aef0",
-                            TakenDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8486),
+                            SecurityStamp = "557cd431-2f32-43fc-bc47-d7832f46d34b",
+                            TakenDate = new DateTime(2021, 12, 31, 22, 12, 15, 321, DateTimeKind.Local).AddTicks(3298),
                             TwoFactorEnabled = false,
                             UserName = "user@test.org"
                         });
@@ -222,7 +224,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("EmployeeCategories");
+                    b.ToTable("EmployeeCategory");
                 });
 
             modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.EmployeeMethod", b =>
@@ -279,7 +281,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
 
                     b.HasIndex("MethodId");
 
-                    b.ToTable("EmployeeMethods");
+                    b.ToTable("EmployeeMethod");
                 });
 
             modelBuilder.Entity("EmployeeCapibilityDemonstration.Models.Method", b =>
@@ -295,79 +297,6 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.HasKey("MethodId");
 
                     b.ToTable("Methods");
-                });
-
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Category.CategoryViewModel", b =>
-                {
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("EmployeeDetailsViewModelId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.HasIndex("EmployeeDetailsViewModelId");
-
-                    b.ToTable("CategoryViewModel");
-                });
-
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeDetailsViewModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("dateHired")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("firstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmployeeDetailsViewModel");
-                });
-
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Method.MethodViewModel", b =>
-                {
-                    b.Property<string>("MethodId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CategoryVMCategoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("EmployeeDetailsViewModelId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MethodId");
-
-                    b.HasIndex("CategoryVMCategoryId");
-
-                    b.HasIndex("EmployeeDetailsViewModelId");
-
-                    b.ToTable("MethodViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -400,14 +329,14 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         new
                         {
                             Id = "e4583f62-6e7c-47f3-a203-33fdf46b6erc",
-                            ConcurrencyStamp = "74fa3d20-3b78-4600-9498-0ea20d8ff1f6",
+                            ConcurrencyStamp = "cbfa0684-593f-4f1e-ace1-8acfce9c41e1",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e4583d62-6e7c-47a3-a303-33fds46b6edc",
-                            ConcurrencyStamp = "fb7455ba-d050-4734-b82a-0dbe4d5d0240",
+                            ConcurrencyStamp = "c3efeb22-04c0-486d-abb0-0f8df7c3f6c5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -583,30 +512,6 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.Navigation("Method");
                 });
 
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Category.CategoryViewModel", b =>
-                {
-                    b.HasOne("EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeDetailsViewModel", null)
-                        .WithMany("MethodCategories")
-                        .HasForeignKey("EmployeeDetailsViewModelId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Method.MethodViewModel", b =>
-                {
-                    b.HasOne("EmployeeCapibilityDemonstration.ViewModels.Category.CategoryViewModel", "CategoryVM")
-                        .WithMany()
-                        .HasForeignKey("CategoryVMCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeDetailsViewModel", null)
-                        .WithMany("EmployeeHasMethods")
-                        .HasForeignKey("EmployeeDetailsViewModelId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("CategoryVM");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -675,13 +580,6 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("EmployeeMethods");
-                });
-
-            modelBuilder.Entity("EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeDetailsViewModel", b =>
-                {
-                    b.Navigation("EmployeeHasMethods");
-
-                    b.Navigation("MethodCategories");
                 });
 #pragma warning restore 612, 618
         }

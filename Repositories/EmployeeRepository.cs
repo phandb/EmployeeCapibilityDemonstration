@@ -1,114 +1,60 @@
-﻿using EmployeeCapibilityDemonstration.Data;
+﻿using AutoMapper;
+using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Interfaces;
 using EmployeeCapibilityDemonstration.Models;
+using EmployeeCapibilityDemonstration.ViewModels.Employee;
+using EmployeeCapibilityDemonstration.ViewModels.Method;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace EmployeeCapibilityDemonstration.Repositories
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
-
         // Inject application Db Context
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
+        private readonly IMethodRepository methodRepo;
+        private readonly ICategoryRepository categoryRepo;
+        private readonly IMapper mapper;
+        private readonly UserManager<Employee> userManager;
+
+
+
+
 
         // Constructor to initialize db context
-        public EmployeeRepository(ApplicationDbContext context)
+        public EmployeeRepository(ApplicationDbContext context,
+                                  IMethodRepository methodRepo,
+                                  ICategoryRepository categoryRepo,
+                                  IMapper mapper,
+                                  UserManager<Employee> userManager) : base(context)
         {
-            _context = context;
-
+            this.context = context;
+            this.methodRepo = methodRepo;
+            this.categoryRepo = categoryRepo;
+            this.mapper = mapper;
+            this.userManager = userManager;
         }
 
-        // CRUD functionality
-        public bool Create(Employee entity)
+        public async Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId)
         {
-            _context.Employees.Add(entity);
-            return Save();
+            var employee = await userManager.FindByIdAsync(employeeId);
+            var methods = context.Methods.Include(e => e.EmployeeMethods)
+                                         .ThenInclude(e => e.Employee)
+                                         .ToListAsync();                        
+                                               
+                                                        
+            var categories = context.Categories.Include(c => c.EmployeeCategories)
+                                                .ToListAsync();
+                            
+
+            
+
+            var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
+           // employeeMethodModel.EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods);
+            return employeeMethodModel;
         }
 
-        public bool Delete(Employee entity)
-        {
-            _context.Remove(entity);
-            return Save();
-        }
-
-        public ICollection<Employee> FindAll()
-        {
-            var employees = _context.Employees.ToList();
-            return employees;
-        }
-
-        public Employee FindById(string id)
-        {
-            var employee = _context.Employees.Find(id);
-            return employee;
-        }
-
-        public bool IsExisted(string id)
-        {
-            var exists = _context.Employees.Any(x => x.Id == id);
-            return true;
-        }
-
-
-        public bool Update(Employee entity)
-        {
-            _context.Employees.Update(entity);
-            return Save();
-        }
-
-        public bool Save()
-        {
-            return _context.SaveChanges() > 0;
-        }
-
-        public ICollection<Employee> GetCategoriesByEmployee(string employeeId)
-        {
-            //var catgories = _context.Employees.
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Employee> GetCategoriesByEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Employee> GetMethodsByEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Employee> GetMethodsByEmployee(string employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Employee> AddAsync(Employee entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Employee>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Employee> GetByIdAsync(string? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Employee entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Exists(string id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

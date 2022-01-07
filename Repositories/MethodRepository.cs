@@ -1,25 +1,47 @@
-﻿using EmployeeCapibilityDemonstration.Data;
+﻿using AutoMapper;
+using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Interfaces;
 using EmployeeCapibilityDemonstration.Models;
+using EmployeeCapibilityDemonstration.ViewModels.Employee;
 using EmployeeCapibilityDemonstration.ViewModels.Method;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeCapibilityDemonstration.Repositories
 {
-    public class MethodRepository :GenericRepository<Method>, IMethodRepository
+    public class MethodRepository : GenericRepository<Method>, IMethodRepository
     {
         private readonly ApplicationDbContext context;
         private readonly ICategoryRepository categoryRepository;
+        private readonly UserManager<Employee> userManager;
+        private readonly IMapper mapper;
 
 
         // Initialize the DbContext via constructor
         public MethodRepository(ApplicationDbContext context,
-                                ICategoryRepository categoryRepository) : base(context)
+                                ICategoryRepository categoryRepository,
+                                UserManager<Employee> userManager,
+                                IMapper mapper) : base(context)
         {
             this.context = context;
             this.categoryRepository = categoryRepository;
+            this.userManager = userManager;
+            this.mapper = mapper;
         }
 
+
+        public async Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId)
+        {
+            //var methods = await context.EmployeeMethod
+            //    .Where(q => q.EmployeeId == employeeId).ToListAsync();
+
+            var employee = await userManager.FindByIdAsync(employeeId);
+
+            var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
+            //employeeMethodModel.EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods);
+            return employeeMethodModel;
+        }
 
         public IEnumerable<SelectListItem> GetMethods()
         {
@@ -87,6 +109,6 @@ namespace EmployeeCapibilityDemonstration.Repositories
             throw new NotImplementedException();
         }
 
-        
+       
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using EmployeeCapibilityDemonstration.Constants;
+using EmployeeCapibilityDemonstration.Interfaces;
 using EmployeeCapibilityDemonstration.Models;
+using EmployeeCapibilityDemonstration.Repositories;
 using EmployeeCapibilityDemonstration.ViewModels.Employee;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,12 +13,18 @@ namespace EmployeeCapibilityDemonstration.Controllers
     public class EmployeesController : Controller
     {
         private readonly UserManager<Employee> userManager;
+        private readonly IEmployeeRepository employeeRepo;
+        private readonly IMethodRepository methodRepo;
         private readonly IMapper mapper;
 
         public EmployeesController(UserManager<Employee> userManager,
+                                   IEmployeeRepository employeeRepo,
+                                   IMethodRepository methodRepo,
                                    IMapper mapper)
         {
             this.userManager = userManager;
+            this.employeeRepo = employeeRepo;
+            this.methodRepo = methodRepo;
             this.mapper = mapper;
         }
 
@@ -35,10 +43,11 @@ namespace EmployeeCapibilityDemonstration.Controllers
         }
 
         // GET: EmployeesController/Details/employeeId
-        public ActionResult Details(string id)
+        public async Task<ActionResult> Details(string id)
         {
 
-            return View();
+            var model = await employeeRepo.GetEmployeeMethods(id);
+            return View(model);
         }
 
         // GET: EmployeesController/Create

@@ -13,6 +13,8 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         [Display(Name = "Method Name")]
         public string? Name { get; set; }
 
+        public CategoryViewModel CategoryVM { get; set; }
+
 
         // Two fields provided for dropdown list. 
         // one for the selected item

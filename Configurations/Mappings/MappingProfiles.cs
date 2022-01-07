@@ -11,9 +11,11 @@ namespace EmployeeCapibilityDemonstration.Mappings
         public MappingProfiles()
         {
             CreateMap<Employee, EmployeeListViewModel>().ReverseMap();
+            CreateMap<Employee, EmployeeDetailsViewModel>().ReverseMap();
+            CreateMap<Employee, MethodViewModel>().ReverseMap();
             CreateMap<Method, MethodViewModel>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
-
+            
 
         }
     }

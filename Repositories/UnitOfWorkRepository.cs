@@ -1,29 +1,43 @@
-﻿using EmployeeCapibilityDemonstration.Data;
+﻿using AutoMapper;
+using EmployeeCapibilityDemonstration.Data;
 using EmployeeCapibilityDemonstration.Interfaces;
+using EmployeeCapibilityDemonstration.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace EmployeeCapibilityDemonstration.Repositories
 {
     public class UnitOfWorkRepository : IUnitOfWorkRepository
     {
-        private readonly ApplicationDbContext _context;
-        private IEmployeeRepository _employeeRepo;
-        private IMethodRepository _methodRepo;
-        private ICategoryRepository _categoryRepo;
+        private ApplicationDbContext context;
+        private  IMapper mapper;
+        private  UserManager<Employee> userManager;
+        private  IEmployeeRepository employeeRepo;
+        private  IMethodRepository methodRepo;
+        private ICategoryRepository categoryRepo;
 
-
-        public UnitOfWorkRepository(ApplicationDbContext context)
+        public UnitOfWorkRepository(ApplicationDbContext context,
+                                    IMapper mapper,
+                                    UserManager<Employee> userManager,
+                                    IEmployeeRepository employeeRepo,
+                                    IMethodRepository methodRepo,
+                                    ICategoryRepository categoryRepo)
 
         {
-            _context = context;
-
+          
+            this.context = context;
+            this.mapper = mapper;
+            this.userManager = userManager;
+            this.employeeRepo = employeeRepo;
+            this.methodRepo = methodRepo;
+            this.categoryRepo = categoryRepo;
         }
-        public IEmployeeRepository Employee => _employeeRepo = _employeeRepo ?? new EmployeeRepository(_context);
+        public IEmployeeRepository Employee => employeeRepo = employeeRepo ?? new EmployeeRepository(context, methodRepo, categoryRepo, mapper, userManager);
         
         public IMethodRepository Method
         {
             get
             {
-                return _methodRepo = _methodRepo ?? new MethodRepository(_context, _categoryRepo);   
+                return methodRepo = methodRepo ?? new MethodRepository(context, categoryRepo, userManager, mapper);   
             }
         }
         
@@ -32,13 +46,13 @@ namespace EmployeeCapibilityDemonstration.Repositories
         {
             get
             {
-                return _categoryRepo = _categoryRepo ?? new CategoryRepository(_context);
+                return categoryRepo = categoryRepo ?? new CategoryRepository(context);
             }
         }
 
         public void Save()
         {
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

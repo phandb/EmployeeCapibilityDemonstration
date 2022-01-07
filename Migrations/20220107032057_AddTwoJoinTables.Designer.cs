@@ -4,6 +4,7 @@ using EmployeeCapibilityDemonstration.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220107032057_AddTwoJoinTables")]
+    partial class AddTwoJoinTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,20 +130,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e5548a45-e721-453b-b5e7-2aee245467b4",
+                            ConcurrencyStamp = "7a1f2d1e-e043-4708-8c32-bfb8c1b85aad",
                             Email = "admin@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4467),
+                            ExpiredDate = new DateTime(2022, 1, 6, 21, 20, 56, 68, DateTimeKind.Local).AddTicks(4936),
                             FirstName = "System",
-                            HiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4389),
+                            HiredDate = new DateTime(2022, 1, 6, 21, 20, 56, 68, DateTimeKind.Local).AddTicks(4820),
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.ORG",
                             NormalizedUserName = "ADMIN@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGpVbNOzxKGy4hGZojsE/gtwskabCKc0Q6IK+SoWS702ex+P90jkvpa937+rPd44Gw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKoPJnHnXvN5s8qWSosxPrJKJdggp85Z0kjy5yZQSQe4iUnhLGnkZ2vxfnCxOxoEzw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ccefe8c3-62b6-4861-8422-b6c6687b2e5f",
-                            TakenDate = new DateTime(2022, 1, 6, 21, 57, 55, 280, DateTimeKind.Local).AddTicks(4460),
+                            SecurityStamp = "5af68680-784d-4e0d-a5c8-3fd4b7422ce3",
+                            TakenDate = new DateTime(2022, 1, 6, 21, 20, 56, 68, DateTimeKind.Local).AddTicks(4932),
                             TwoFactorEnabled = false,
                             UserName = "admin@test.org"
                         },
@@ -149,20 +151,20 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b47c6091-5017-49cc-9f4d-1b630429035f",
+                            ConcurrencyStamp = "81e29387-2b27-4a3c-a358-f19cccddf3fa",
                             Email = "user@test.org",
                             EmailConfirmed = true,
-                            ExpiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8490),
+                            ExpiredDate = new DateTime(2022, 1, 6, 21, 20, 56, 74, DateTimeKind.Local).AddTicks(3695),
                             FirstName = "System",
-                            HiredDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8429),
+                            HiredDate = new DateTime(2022, 1, 6, 21, 20, 56, 74, DateTimeKind.Local).AddTicks(3574),
                             LastName = "User",
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@TEST.ORG",
                             NormalizedUserName = "USER@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDR0DShxQDpDrO9gLS80MIEyIfP53QtMSf7CU+PUZRMjLZipuOtDDsXfwOPZuCjAzg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL+qL8YmmtDtRERfXZ3UPe/n0bZQHW/7wjRC624Ncqx2T7UCnL9tI26nPSasZq90wg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "015b6c61-eadb-4eae-a67a-60418694aef0",
-                            TakenDate = new DateTime(2022, 1, 6, 21, 57, 55, 285, DateTimeKind.Local).AddTicks(8486),
+                            SecurityStamp = "c2e05961-99e4-49b6-9f2d-e0fa7e09c271",
+                            TakenDate = new DateTime(2022, 1, 6, 21, 20, 56, 74, DateTimeKind.Local).AddTicks(3690),
                             TwoFactorEnabled = false,
                             UserName = "user@test.org"
                         });
@@ -400,14 +402,14 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         new
                         {
                             Id = "e4583f62-6e7c-47f3-a203-33fdf46b6erc",
-                            ConcurrencyStamp = "74fa3d20-3b78-4600-9498-0ea20d8ff1f6",
+                            ConcurrencyStamp = "0a607fc2-dae2-49ea-86d3-1ecf1e65570a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e4583d62-6e7c-47a3-a303-33fds46b6edc",
-                            ConcurrencyStamp = "fb7455ba-d050-4734-b82a-0dbe4d5d0240",
+                            ConcurrencyStamp = "83bd3f89-34ea-44d7-9450-661f88eee1dd",
                             Name = "User",
                             NormalizedName = "USER"
                         });

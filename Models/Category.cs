@@ -12,7 +12,7 @@ namespace EmployeeCapibilityDemonstration.Models
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Method> Method { get; set; }
+        public virtual Method Method { get; set; }
 
         // Navigation property of One Method Many Category relationship
 
@@ -20,7 +20,7 @@ namespace EmployeeCapibilityDemonstration.Models
         // public Method Method  { get; set; }
 
         // Naviagation property for Many-to-Many Relationship
-        // public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
+        public ICollection<EmployeeCategory> EmployeeCategories { get; set; }
 
 
     }
