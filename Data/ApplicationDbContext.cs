@@ -107,7 +107,7 @@ namespace EmployeeCapibilityDemonstration.Data
 
 
 
-        public DbSet<EmployeeCapibilityDemonstration.ViewModels.Employee.EmployeeDetailsViewModel> EmployeeDetailsViewModel { get; set; }
+        
 
 
 

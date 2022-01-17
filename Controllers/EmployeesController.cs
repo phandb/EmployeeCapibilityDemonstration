@@ -4,12 +4,14 @@ using EmployeeCapibilityDemonstration.Interfaces;
 using EmployeeCapibilityDemonstration.Models;
 using EmployeeCapibilityDemonstration.Repositories;
 using EmployeeCapibilityDemonstration.ViewModels.Employee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
+    //[Authorize(Roles =  Roles.Administrator)]
     public class EmployeesController : Controller
     {
         private readonly UserManager<Employee> userManager;
@@ -41,7 +43,14 @@ namespace EmployeeCapibilityDemonstration.Controllers
             var model = mapper.Map<List<EmployeeListViewModel>>(employees);
             return View(model);
         }
+        // GET: EmployeesController/Details
+        public async Task<ActionResult> Details()
+        {
 
+            var model = await employeeRepo.GetEmployeeDetail();
+            return View(model);
+        }
+        /*
         // GET: EmployeesController/Details/employeeId
         public async Task<ActionResult> Details(string id)
         {
@@ -49,6 +58,7 @@ namespace EmployeeCapibilityDemonstration.Controllers
             var model = await employeeRepo.GetEmployeeMethods(id);
             return View(model);
         }
+        */
 
         // GET: EmployeesController/Create
         public ActionResult Create()

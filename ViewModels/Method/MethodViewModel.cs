@@ -1,4 +1,5 @@
 ﻿using EmployeeCapibilityDemonstration.ViewModels.Category;
+using EmployeeCapibilityDemonstration.ViewModels.Employee;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,8 +14,8 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         [Display(Name = "Method Name")]
         public string? Name { get; set; }
 
-        public CategoryViewModel CategoryVM { get; set; }
-
+        public List<CategoryViewModel> CategoryVM { get; set; }
+        public List<EmployeeListViewModel> EmployeeListVM { get; set; }
 
         // Two fields provided for dropdown list. 
         // one for the selected item

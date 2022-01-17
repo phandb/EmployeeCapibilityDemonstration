@@ -6,5 +6,6 @@ namespace EmployeeCapibilityDemonstration.Interfaces
     public interface IEmployeeRepository : IGenericRepository<Employee>
     {
         Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId);
+        Task<EmployeeDetailsViewModel> GetEmployeeDetail();
     }
 }

@@ -7,14 +7,15 @@
 <h1>Details</h1>
 
 <div>
-    <h4>EmployeeDetailsViewModel</h4>
+    <h4>Employee: @Model.firstName @Model.lastName</h4>
+    <h5>Employee Id: @Model.Id</h5>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EmployeeId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmployeeId)
+            @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.firstName)

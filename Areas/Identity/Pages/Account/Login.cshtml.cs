@@ -115,8 +115,21 @@ namespace EmployeeCapibilityDemonstration.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    
+                   if (User.IsInRole("Administrator"))
+                    {
+                        return RedirectToAction("Index", "Employees");
+                    }
+                    else if (User.IsInRole("User"))
+                    {
+                        return Redirect("~/Employees/Details");
+                    }
+                    else
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect(returnUrl);
+                    }
+                  
                 }
                 if (result.RequiresTwoFactor)
                 {

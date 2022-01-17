@@ -20,7 +20,7 @@ namespace EmployeeCapibilityDemonstration.Configurations.Entities
                     NormalizedUserName = "ADMIN@TEST.ORG",
                     FirstName = "System",
                     LastName = "Admin",
-                    PasswordHash = hasher.HashPassword(null, "Thaihoa92@"),
+                    PasswordHash = hasher.HashPassword(null, "Pa$$word1"),
                     EmailConfirmed = true
                 },
 
@@ -33,7 +33,7 @@ namespace EmployeeCapibilityDemonstration.Configurations.Entities
                     NormalizedUserName = "USER@TEST.ORG",
                     FirstName = "System",
                     LastName = "User",
-                    PasswordHash = hasher.HashPassword(null, "Thaihoa92@"),
+                    PasswordHash = hasher.HashPassword(null, "Pa$$word1"),
                     EmailConfirmed = true
                 }
             );

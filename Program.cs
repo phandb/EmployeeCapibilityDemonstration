@@ -20,6 +20,8 @@ builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireC
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddHttpContextAccessor();
+
 // Service for email sender -- future use
 // builder.Services.AddTransient<IEmailSender>(e => new IEmailSender("localhost", 25, "no-reply@test.org"));
 

@@ -15,7 +15,17 @@ namespace EmployeeCapibilityDemonstration.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            if (HttpContext.User.IsInRole("Administrator"))
+            {
+                return RedirectToAction("Index", "Employees");
+            }
+            else if (HttpContext.User.IsInRole("User"))
+            {
+                return RedirectToAction("Details", "Employees");
+            }
+
+            else return View();
         }
 
         public IActionResult Privacy()
