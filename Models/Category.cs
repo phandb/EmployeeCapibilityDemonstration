@@ -9,15 +9,15 @@ namespace EmployeeCapibilityDemonstration.Models
         [Key]
         public string CategoryId { get; set; }
 
-        [Required]
+        [StringLength(50)]
+        [Display(Name = "Category")]
         public string Name { get; set; }
 
 
 
         // Naviagation property for Many-to-Many Relationship
         public ICollection<MethodCategory> MethodCategories { get; set; }
-        public ICollection<MethodCategory> EmployeeCategories { get; set; }
-
+       
 
     }
 }

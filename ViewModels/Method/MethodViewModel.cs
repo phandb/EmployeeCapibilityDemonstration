@@ -12,7 +12,7 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         public string? MethodId { get; set; }
 
         [Required]
-        [Display(Name = "Method Name")]
+        [Display(Name = "Method")]
         public string? Name { get; set; }
 
         public List<CategoryViewModel> CategoryVM { get; set; }

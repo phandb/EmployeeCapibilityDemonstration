@@ -83,18 +83,7 @@ namespace EmployeeCapibilityDemonstration.Data
                 .WithMany(em => em.MethodCategories)
                 .HasForeignKey(em => em.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict); ;
-
-
-            // One Method has many category relationship
-
-            /*
-            builder.Entity<Category>()
-                .HasOne<Method>(m => m.Method)
-                .WithMany(c => c.Categories)
-                .HasForeignKey(c => c.MethodId)
-                .OnDelete(DeleteBehavior.Restrict);
-           
-            */
+                     
 
 
             foreach (var foreignKey in builder.Model.GetEntityTypes()

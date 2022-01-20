@@ -73,15 +73,13 @@ namespace EmployeeCapibilityDemonstration.Repositories
                                           .ToListAsync();                        
                                             
                                                         
-            var categories = await context.Categories.Include(c => c.EmployeeCategories)
-                                                .ThenInclude(ec => ec.Employee)
-                                                .ToListAsync();
+            
                    
                       
 
             var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
             employeeMethodModel.EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods);
-            employeeMethodModel.MethodCategories = mapper.Map<List<CategoryViewModel>>(categories);
+           
 
             return employeeMethodModel;
         }

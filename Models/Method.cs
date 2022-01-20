@@ -8,6 +8,8 @@ namespace EmployeeCapibilityDemonstration.Models
         public string MethodId { get; set; }
 
         [Required]
+        [StringLength(50)]
+        [Display(Name = "Method")]
         public string Name { get; set; }
 
 
