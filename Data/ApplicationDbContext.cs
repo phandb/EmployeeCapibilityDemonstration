@@ -20,7 +20,7 @@ namespace EmployeeCapibilityDemonstration.Data
         public DbSet<Method> Methods { get; set; }
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<EmployeeCategory> EmployeeCategories { get; set; }
+        public DbSet<MethodCategory> MethodCategories { get; set; }
         public DbSet<EmployeeMethod> EmployeeMethods{ get; set; }
 
 
@@ -68,19 +68,19 @@ namespace EmployeeCapibilityDemonstration.Data
 
             //Many to many relationship between Employee and Category Using 2 one-to-many
 
-            builder.Entity<EmployeeCategory>()
-                .HasKey(em => new { em.Id, em.CategoryId });
+            builder.Entity<MethodCategory>()
+                .HasKey(em => new { em.MethodId, em.CategoryId });
 
-            builder.Entity<EmployeeCategory>()
-                .HasOne(e => e.Employee)
-                .WithMany(em => em.EmployeeCategories)
-                .HasForeignKey(em => em.Id)
+            builder.Entity<MethodCategory>()
+                .HasOne(e => e.Method)
+                .WithMany(em => em.MethodCategories)
+                .HasForeignKey(em => em.MethodId)
                 .OnDelete(DeleteBehavior.Restrict); ;
             //.IsRequired();
 
-            builder.Entity<EmployeeCategory>()
+            builder.Entity<MethodCategory>()
                 .HasOne(m => m.Category)
-                .WithMany(em => em.EmployeeCategories)
+                .WithMany(em => em.MethodCategories)
                 .HasForeignKey(em => em.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict); ;
 
@@ -103,6 +103,10 @@ namespace EmployeeCapibilityDemonstration.Data
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
         }
+
+
+
+       
 
 
 

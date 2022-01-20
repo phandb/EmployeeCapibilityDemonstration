@@ -7,6 +7,7 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
 {
     public class MethodViewModel
     {
+        public string Id { get; set; }
         [Key]
         public string? MethodId { get; set; }
 
@@ -15,7 +16,7 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
         public string? Name { get; set; }
 
         public List<CategoryViewModel> CategoryVM { get; set; }
-        public List<EmployeeListViewModel> EmployeeListVM { get; set; }
+        public List<EmployeeDetailsViewModel> EmployeeDetails { get; set; }
 
         // Two fields provided for dropdown list. 
         // one for the selected item

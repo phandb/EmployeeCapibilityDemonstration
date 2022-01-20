@@ -4,44 +4,46 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
 
 <div>
     <h4>Employee: @Model.firstName @Model.lastName</h4>
-    <h5>Employee Id: @Model.Id</h5>
+    <h6>Employee ID: @Model.EmployeeId</h6>
+    <h6>Hired Date: @Model.dateHired</h6>
+    <h6>Email: @Model.Email</h6>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.dateHired)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.dateHired)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-    </dl>
+    
+</div>
+
+<div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeHasMethods[0].Name)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.EmployeeHasMethods) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+               
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+               
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

@@ -2,10 +2,11 @@
 
 namespace EmployeeCapibilityDemonstration.Models
 {
-    public class EmployeeCategory :IdentityUser
+    public class MethodCategory 
     {
+        public string MethodId { get; set; }
         public string CategoryId { get; set; }
-        public Employee Employee { get; set; }
+        public Method Method { get; set; }
         public Category Category { get; set; }
     }
 }

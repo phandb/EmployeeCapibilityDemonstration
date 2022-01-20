@@ -45,38 +45,44 @@ namespace EmployeeCapibilityDemonstration.Repositories
         {
             var employee = await userManager.GetUserAsync(httpContextAccessor?.HttpContext?.User);
 
-           // if (employee == null)  return null;
-           
-            var methods = context.Methods.Include(m => m.EmployeeMethods)
+            // if (employee == null)  return null;
+
+            var methods =  await context.Methods.Include(m => m.EmployeeMethods)
                                          .ThenInclude(em => em.Employee)
                                          .ToListAsync();
+           
             var model = new EmployeeDetailsViewModel
             {
                 EmployeeId = employee.Id,
+                Email = employee.Email,
+                firstName = employee.FirstName,
+                lastName = employee.LastName,
+                dateHired = employee.HiredDate,
                 EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods)
             };
+
             return model;
         }
 
         public async Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId)
         {
             var employee = await userManager.FindByIdAsync(employeeId);
-
-            var methods = context.Methods.Include(m => m.EmployeeMethods)
+           
+            var methods = await context.Methods.Include(m => m.EmployeeMethods)
                                           .ThenInclude(em => em.Employee)
                                           .ToListAsync();                        
-             /*                                  
+                                            
                                                         
-            var categories = context.Categories.Include(c => c.EmployeeCategories)
+            var categories = await context.Categories.Include(c => c.EmployeeCategories)
                                                 .ThenInclude(ec => ec.Employee)
                                                 .ToListAsync();
-               */      
-
-            
+                   
+                      
 
             var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
             employeeMethodModel.EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods);
-            //employeeMethodModel.MethodCategories = mapper.Map<List<CategoryViewModel>>(categories);
+            employeeMethodModel.MethodCategories = mapper.Map<List<CategoryViewModel>>(categories);
+
             return employeeMethodModel;
         }
 

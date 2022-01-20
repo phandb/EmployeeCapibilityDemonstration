@@ -13,19 +13,13 @@ namespace EmployeeCapibilityDemonstration.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime HiredDate { get; set; } 
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime TakenDate { get; set; } 
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime ExpiredDate { get; set; }
+        
 
         // Navigation Property for Many-to-Many Relationship
         public ICollection<EmployeeMethod>? EmployeeMethods { get; set; }
 
         // Navigation property 
-         public ICollection<EmployeeCategory>? EmployeeCategories { get; set; }
+         public ICollection<MethodCategory>? EmployeeCategories { get; set; }
 
        
     }

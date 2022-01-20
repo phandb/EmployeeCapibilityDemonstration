@@ -20,11 +20,11 @@ namespace EmployeeCapibilityDemonstration.Mappings
 
             CreateMap<Method, MethodViewModel>()
                 // Method -> MethodViewModel
-                .ForMember(m => m.EmployeeListVM, opt => opt.MapFrom(m => m.EmployeeMethods
+                .ForMember(m => m.EmployeeDetails, opt => opt.MapFrom(m => m.EmployeeMethods
                             .Select(em => em.Employee)))
                 .ReverseMap() // MethodViewModel -> Method
                 .PreserveReferences()
-                .ForMember(em => em.EmployeeMethods, opt => opt.MapFrom(m => m.EmployeeListVM
+                .ForMember(em => em.EmployeeMethods, opt => opt.MapFrom(m => m.EmployeeDetails
                                                      .Select(e => new
                                                      {
                                                          e.Id,
@@ -32,10 +32,7 @@ namespace EmployeeCapibilityDemonstration.Mappings
                                                          m.MethodId,
                                                          Method = m
                                                      })));
-                
-
-
-
+               
         }
     }
 }

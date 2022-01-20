@@ -10,15 +10,12 @@ namespace EmployeeCapibilityDemonstration.Models
         [Required]
         public string Name { get; set; }
 
-        //  public string Type { get; set; }
-        //public DateTime DateTaken { get; set; }
-        //public DateTime ExpiredOn { get; set; }
 
-        // Navigation property one to many relationship with category
-        // One method has many catgories
-        public ICollection<Category> Categories { get; set; }
 
         // Naviagation property for Many-to-Many Relationship
+        public ICollection<MethodCategory> MethodCategories { get; set; }
+
+        
         public ICollection<EmployeeMethod> EmployeeMethods { get; set; }
 
     }
