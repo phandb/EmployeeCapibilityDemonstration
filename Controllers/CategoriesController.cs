@@ -66,8 +66,15 @@ namespace EmployeeCapibilityDemonstration.Controllers
             if (ModelState.IsValid)
             {
                 var category = mapper.Map<Category>(categoryVM);  // Convert view model to model
+               /* 
+                if (category.Name.Any())
+                {
+                   
+                    return RedirectToAction(nameof(Index));
+                }
+               */
                 await categoryRepo.AddAsync(category);
-                
+
                 return RedirectToAction(nameof(Index));
             }
             return View(categoryVM);  // Reload VM if model state not valid

@@ -5,18 +5,34 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Employee
 {
     public class EmployeeAddMethodViewModel
     {
-        [Display(Name = "Employee ID Number")]
-        public string Id { get; set; } = String.Empty;
-        
-        [Required]
-        [Display(Name = "Method")]
-        public string SelectedMethod { get; set; }  //Key
+        public string Id { get; set; } 
+
+        [Display(Name = "Employee ID ")]
+        public string EmployeeId { get; set; } = String.Empty;
+
+        [Display(Name = "Method ID ")]
+        public string MethodId { get; set; }  //Key
         public IEnumerable<SelectListItem> Methods { get; set; } //Value
 
+
+        [Display(Name = "Taken On")]
+        public DateTime DateTaken { get; set; }
+
+
+        [Display(Name = "Expired On")]
+        public DateTime DateExpired
+        {
+            get
+            {
+                return DateTaken.AddDays(3);
+
+            }
+        }
+        
         [Required]
         [Display(Name = "Category")]
-        public string SelectedCategory{ get; set; } //Key
+        public string CategoryId{ get; set; } //Key
         public IEnumerable<SelectListItem> Categories { get; set; }  //value
-
+        
     }
 }

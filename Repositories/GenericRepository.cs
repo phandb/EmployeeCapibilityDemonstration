@@ -17,10 +17,14 @@ namespace EmployeeCapibilityDemonstration.Repositories
         // Implementation of the interface
         public async Task<T> AddAsync(T entity)
         {
+
+          
             await context.AddAsync(entity);
             await context.SaveChangesAsync();
             return entity;
         }
+
+       
 
         public async Task DeleteAsync(string id)
         {
@@ -51,7 +55,7 @@ namespace EmployeeCapibilityDemonstration.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            // context.Entry(entity).State = EntityState.Modified;
+            //context.Entry(entity).State = EntityState.Modified;
             context.Update(entity);
             await context.SaveChangesAsync();
         }

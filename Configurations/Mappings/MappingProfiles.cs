@@ -16,8 +16,12 @@ namespace EmployeeCapibilityDemonstration.Mappings
             
             CreateMap<EmployeeMethod, MethodViewModel>().ReverseMap();
             CreateMap<EmployeeMethod, EmployeeDetailsViewModel>().ReverseMap();
+            CreateMap<EmployeeMethod, EmployeeAddMethodViewModel>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
-
+            CreateMap<Method, CategoryViewModel>().ReverseMap();    
+            CreateMap<Method, MethodCreateViewModel>().ReverseMap();
+            CreateMap<Method, MethodViewModel>().ReverseMap();
+            /*
             CreateMap<Method, MethodViewModel>()
                 // Method -> MethodViewModel
                 .ForMember(m => m.EmployeeDetails, opt => opt.MapFrom(m => m.EmployeeMethods
@@ -32,7 +36,7 @@ namespace EmployeeCapibilityDemonstration.Mappings
                                                          m.MethodId,
                                                          Method = m
                                                      })));
-               
+               */
         }
     }
 }

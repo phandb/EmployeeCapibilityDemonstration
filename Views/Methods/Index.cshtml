@@ -21,20 +21,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
             
-            <td>
-                <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.MethodId"> <i title="Edit" class="fas fa-edit" ></i> </a> 
-                <!-- < a asp-action="Details" asp-route-id="@item.MethodId">Details</a>  |  -->
-                <!-- <a asp-action="Delete" class="btn btn-outline-danger deleteBtn"asp-route-id="@item.MethodId">Delete</a>  -->
-                <button data-id="@item.MethodId" class="btn btn-outline-danger deleteBtn" type="button"> <i title="Delete" class="fas fa-trash-alt" ></i> </button>
-            </td>
-        </tr>
-}
+                    <td>
+                        <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.MethodId"> <i title="Edit" class="fas fa-edit" ></i> </a> 
+                        <!-- < a asp-action="Details" asp-route-id="@item.MethodId">Details</a>  |  -->
+                        <!-- <a asp-action="Delete" class="btn btn-outline-danger deleteBtn"asp-route-id="@item.MethodId">Delete</a>  -->
+                        <button data-id="@item.MethodId" class="btn btn-outline-danger deleteBtn" type="button"> <i title="Delete" class="fas fa-trash-alt" ></i> </button>
+                    </td>
+                </tr>
+            }
     </tbody>
 </table>
 

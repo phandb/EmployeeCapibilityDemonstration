@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EmployeeCapibilityDemonstration.Controllers
 {
@@ -17,22 +18,25 @@ namespace EmployeeCapibilityDemonstration.Controllers
         private readonly UserManager<Employee> userManager;
         private readonly IEmployeeRepository employeeRepo;
         private readonly IMethodRepository methodRepo;
+        private readonly IEmployeeMethodRepository employeeMethodRepo;
         private readonly IMapper mapper;
 
         public EmployeesController(UserManager<Employee> userManager,
                                    IEmployeeRepository employeeRepo,
                                    IMethodRepository methodRepo,
+                                   IEmployeeMethodRepository employeeMethodRepo,
                                    IMapper mapper)
         {
             this.userManager = userManager;
             this.employeeRepo = employeeRepo;
             this.methodRepo = methodRepo;
+            this.employeeMethodRepo = employeeMethodRepo;
             this.mapper = mapper;
         }
 
 
 
-
+        [Authorize(Roles = Roles.Administrator)]
         // GET: EmployeesController
         public async Task<ActionResult> Index()
         {
@@ -43,6 +47,9 @@ namespace EmployeeCapibilityDemonstration.Controllers
             var model = mapper.Map<List<EmployeeListViewModel>>(employees);
             return View(model);
         }
+
+
+        
         // GET: EmployeesController/Details
         public async Task<ActionResult> Details()
         {
@@ -59,26 +66,38 @@ namespace EmployeeCapibilityDemonstration.Controllers
             return View(model);
         }
         */
-
-        // GET: EmployeesController/Create
-        public ActionResult Create()
+        private void PopulatedMethodsDropDownList(object selectedMethod = null)
         {
-            return View();
+            var methodsQuery = methodRepo.GetAllAsync();
+            ViewBag.MethodId = new SelectList(methodsQuery.Result, "MethodId", "Name", selectedMethod);
+                 
+        }
+
+
+        [Authorize(Roles = Roles.User)]
+        // GET: Employees/Create
+        public async Task<ActionResult> AddMethod()
+        {
+            var model = await employeeRepo.PopulateMethodsDropDownList();
+             return View(model);
+           // PopulatedMethodsDropDownList();
+            //return View();
         }
 
         // POST: EmployeesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> AddMethod(EmployeeAddMethodViewModel AddMethodVM)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+            if (!ModelState.IsValid)
+            { 
+                
+                await employeeMethodRepo.AddMethodToEmployee(AddMethodVM);
+                return RedirectToAction(nameof(Details));
             }
-            catch
-            {
-                return View();
-            }
+            //PopulatedMethodsDropDownList();
+            return View(AddMethodVM);
+            
         }
 
         // GET: EmployeesController/Edit/5

@@ -4,6 +4,8 @@
     {
         //  CRUD
         Task<T> AddAsync(T entity);
+
+        //Task<T> AddOrUpdateAsync(T entity);
         Task<List<T>> GetAllAsync();
         
         Task<T> GetByIdAsync(string? id);

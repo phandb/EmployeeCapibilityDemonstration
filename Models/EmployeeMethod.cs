@@ -7,6 +7,9 @@ namespace EmployeeCapibilityDemonstration.Models
     //  They are characteristic of each method taken by employee
     public class EmployeeMethod : IdentityUser 
     {
+        [Key]
+        public string EmployeeMethodId { get; set; }
+
         // EmployeeId will be Identityuser.Id
         public string MethodId { get; set; }
 
@@ -16,12 +19,7 @@ namespace EmployeeCapibilityDemonstration.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime ExpiredDate { 
-            get
-            {
-                return TakenDate.AddDays(3);
-            }
-        }
+        public DateTime ExpiredDate { get; set; }
 
         public Employee Employee { get; set; }
         public Method Method { get; set; }

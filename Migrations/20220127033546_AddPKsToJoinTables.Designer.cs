@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeCapibilityDemonstration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220120054451_RebuildDatabase")]
-    partial class RebuildDatabase
+    [Migration("20220127033546_AddPKsToJoinTables")]
+    partial class AddPKsToJoinTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,7 +122,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "e4583f62-6e7b-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32104658-2709-4567-b2a8-999f08e8a2cb",
+                            ConcurrencyStamp = "0159906d-c93d-414f-98b9-17698ea12322",
                             Email = "admin@test.org",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -131,9 +131,9 @@ namespace EmployeeCapibilityDemonstration.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@TEST.ORG",
                             NormalizedUserName = "ADMIN@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAELjEiS3386q10Uf+PKORk/2x3lyO+uF7QivEvkTahaYxMJFQP+V6wb7EgrD1ziln+w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDhq1J7TqzN5SKA49+6/flL25EablrZbb6DiCXhqLadwAsupacEk4j/JBiGg+kP1Zg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "30ff10af-c00e-4f0f-aa02-a947c12a68d1",
+                            SecurityStamp = "e2876f3f-2af8-427c-a24f-13053a717921",
                             TwoFactorEnabled = false,
                             UserName = "admin@test.org"
                         },
@@ -141,7 +141,7 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         {
                             Id = "d5683f62-7f8c-47f3-a202-33fdf46b62fa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dc3e6276-ae8b-4f4a-a214-5376a9dcf945",
+                            ConcurrencyStamp = "bbc4d9ca-6224-448b-9085-c99feb4412a9",
                             Email = "user@test.org",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -150,9 +150,9 @@ namespace EmployeeCapibilityDemonstration.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@TEST.ORG",
                             NormalizedUserName = "USER@TEST.ORG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO/8NHvNn89Z2b9SX5CfqLfVLpbNvPAA0Gx+xEZxYtYfmKASyDOY8VZIMgMf06iosA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPcFqeDQzyyZSVPN5GUPiG47ez8+wUPuPjZYD4ejYGApTPLRwW6AMAxGgUed+ZGN2w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1857e93a-ab0c-4caa-b657-9675b548381d",
+                            SecurityStamp = "94dbc63a-1008-4b79-b82e-2ca6d5d7f98d",
                             TwoFactorEnabled = false,
                             UserName = "user@test.org"
                         });
@@ -177,6 +177,12 @@ namespace EmployeeCapibilityDemonstration.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("EmployeeMethodId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpiredDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -242,6 +248,9 @@ namespace EmployeeCapibilityDemonstration.Migrations
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("MethodCategoryId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MethodId", "CategoryId");
 
                     b.HasIndex("CategoryId");
@@ -279,14 +288,14 @@ namespace EmployeeCapibilityDemonstration.Migrations
                         new
                         {
                             Id = "e4583f62-6e7c-47f3-a203-33fdf46b6erc",
-                            ConcurrencyStamp = "8692df29-6cd3-40bb-b16f-f0e967ceb64e",
+                            ConcurrencyStamp = "65e7371b-8b6c-44ad-8548-ad0450ea6f0f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e4583d62-6e7c-47a3-a303-33fds46b6edc",
-                            ConcurrencyStamp = "679a4586-e931-459b-b30f-ba62ed51e611",
+                            ConcurrencyStamp = "326c4362-de7c-495c-9d42-f20f31dba7b5",
                             Name = "User",
                             NormalizedName = "USER"
                         });

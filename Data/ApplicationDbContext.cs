@@ -92,19 +92,7 @@ namespace EmployeeCapibilityDemonstration.Data
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
         }
-
-
-
-       
-
-
-
-
-        
-
-
-
-
+               
         
     }
 }

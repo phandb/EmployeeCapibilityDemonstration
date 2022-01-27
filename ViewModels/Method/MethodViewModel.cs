@@ -7,26 +7,26 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
 {
     public class MethodViewModel
     {
-        public string Id { get; set; }
         [Key]
+        public string Id { get; set; }
         public string? MethodId { get; set; }
 
         [Required]
         [Display(Name = "Method")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
-        public List<CategoryViewModel> CategoryVM { get; set; }
-        public List<EmployeeDetailsViewModel> EmployeeDetails { get; set; }
 
-        // Two fields provided for dropdown list. 
-        // one for the selected item
-        // One for the list which is made up of a collection of SelectListItem
-        /*
-        [Required, Display(Name = "Category")]
-        public string SelectedCategory { get; set; }
-        public ICollection<SelectListItem> Categories{ get; set; }
+        [Display(Name = "Taken On")]
+        public DateTime DateTaken { get; set; }
 
-        */
+        [Display(Name = "Expired On")]
+        public DateTime DateExpired
+        {
+            get
+            {
+                return DateTaken.AddDays(3);
+            }
+        }
 
     }
 }

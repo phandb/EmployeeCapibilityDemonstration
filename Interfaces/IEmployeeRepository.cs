@@ -7,5 +7,7 @@ namespace EmployeeCapibilityDemonstration.Interfaces
     {
         Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId);
         Task<EmployeeDetailsViewModel> GetEmployeeDetail();
+        Task AddAsync(EmployeeMethod methodAdded);
+        Task<EmployeeAddMethodViewModel> PopulateMethodsDropDownList();
     }
 }

@@ -57,7 +57,7 @@ namespace EmployeeCapibilityDemonstration.Repositories
             var DefaultSelectedItem = new SelectListItem()
             {
                 Value = null,
-                Text = "--Select Method--"
+                Text = "Select Method"
 
             };
 
@@ -91,7 +91,7 @@ namespace EmployeeCapibilityDemonstration.Repositories
             var DefaultCategory = new SelectListItem()
             {
                 Value = null,
-                Text = "--Select Category--"
+                Text = "Select Category"
             };
             categories.Insert(0, DefaultCategory);
 

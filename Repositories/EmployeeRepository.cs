@@ -41,27 +41,41 @@ namespace EmployeeCapibilityDemonstration.Repositories
             this.httpContextAccessor = httpContextAccessor;
         }
 
+        public Task AddAsync(EmployeeMethod methodAdded)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<EmployeeAddMethodViewModel> PopulateMethodsDropDownList()
+        {
+            var user = await userManager.GetUserAsync(httpContextAccessor?.HttpContext?.User);
+
+            var model = new EmployeeAddMethodViewModel()
+            {
+                EmployeeId = user.Id,
+                Methods = methodRepo.GetMethods(),
+            };
+            return model;
+        }
         public async Task<EmployeeDetailsViewModel> GetEmployeeDetail()
         {
-            var employee = await userManager.GetUserAsync(httpContextAccessor?.HttpContext?.User);
+            var user = await userManager.GetUserAsync(httpContextAccessor?.HttpContext?.User);
 
             // if (employee == null)  return null;
 
-            var methods =  await context.Methods.Include(m => m.EmployeeMethods)
-                                         .ThenInclude(em => em.Employee)
-                                         .ToListAsync();
-           
-            var model = new EmployeeDetailsViewModel
-            {
-                EmployeeId = employee.Id,
-                Email = employee.Email,
-                firstName = employee.FirstName,
-                lastName = employee.LastName,
-                dateHired = employee.HiredDate,
-                EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods)
-            };
+            var employee = await context.Employees
+                                    .Include(e => e.EmployeeMethods)
+                                        .ThenInclude(m => m.Method)
+                                        .SingleOrDefaultAsync(m => m.Id == user.Id);
 
-            return model;
+            var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(user);
+            employeeMethodModel.Methods = mapper.Map<List<MethodViewModel>>(employee.EmployeeMethods);
+
+                // Categories = mapper.Map<List<CategoryViewModel>>(methods)                        
+            
+            
+
+            return employeeMethodModel;
         }
 
         public async Task<EmployeeDetailsViewModel> GetEmployeeMethods(string employeeId)
@@ -71,14 +85,10 @@ namespace EmployeeCapibilityDemonstration.Repositories
             var methods = await context.Methods.Include(m => m.EmployeeMethods)
                                           .ThenInclude(em => em.Employee)
                                           .ToListAsync();                        
-                                            
-                                                        
-            
-                   
-                      
+               
 
             var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
-            employeeMethodModel.EmployeeHasMethods = mapper.Map<List<MethodViewModel>>(methods);
+           // employeeMethodModel.Methods = mapper.Map<List<MethodViewModel>>(methods);
            
 
             return employeeMethodModel;
