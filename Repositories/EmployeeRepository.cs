@@ -67,13 +67,26 @@ namespace EmployeeCapibilityDemonstration.Repositories
                                     .Include(e => e.EmployeeMethods)
                                         .ThenInclude(m => m.Method)
                                         .SingleOrDefaultAsync(m => m.Id == user.Id);
+           
+            var listMethods = new List<MethodViewModel>();
 
-            var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(user);
-            employeeMethodModel.Methods = mapper.Map<List<MethodViewModel>>(employee.EmployeeMethods);
+            foreach (var method in employee.EmployeeMethods)
+            {
+                Method methodObj = new Method();
+                methodObj = await methodRepo.GetByIdAsync(method.MethodId);
+                var methodViewModel = new MethodViewModel();
+                listMethods.Add(mapper.Map(methodObj, methodViewModel));
+            }
 
-                // Categories = mapper.Map<List<CategoryViewModel>>(methods)                        
-            
-            
+            var employeeMethodModel = mapper.Map<EmployeeDetailsViewModel>(employee);
+            employeeMethodModel.Methods = mapper.Map<List<MethodViewModel>>(listMethods);
+
+           
+           
+
+            // Categories = mapper.Map<List<CategoryViewModel>>(methods)                        
+
+
 
             return employeeMethodModel;
         }

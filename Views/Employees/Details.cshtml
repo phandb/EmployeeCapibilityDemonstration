@@ -64,6 +64,12 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateTaken)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateExpired)
+                        </td>
             
                         <td>
                             <a class="btn btn-outline-info" asp-action="Edit" asp-route-id="@item.MethodId"> <i title="Edit" class="fas fa-edit" ></i> </a> 

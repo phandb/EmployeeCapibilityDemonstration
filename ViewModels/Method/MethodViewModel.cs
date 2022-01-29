@@ -13,13 +13,15 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Method
 
         [Required]
         [Display(Name = "Method")]
-        public string Name { get; set; }
+        public string Name { get ; set; }
 
 
         [Display(Name = "Taken On")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateTaken { get; set; }
 
         [Display(Name = "Expired On")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DateExpired
         {
             get

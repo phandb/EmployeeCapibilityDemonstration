@@ -14,11 +14,11 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Employee
         public string MethodId { get; set; }  //Key
         public IEnumerable<SelectListItem> Methods { get; set; } //Value
 
-
+       
         [Display(Name = "Taken On")]
         public DateTime DateTaken { get; set; }
 
-
+       
         [Display(Name = "Expired On")]
         public DateTime DateExpired
         {

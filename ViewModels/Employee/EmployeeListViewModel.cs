@@ -12,7 +12,11 @@ namespace EmployeeCapibilityDemonstration.ViewModels.Employee
         [Display(Name = "Last Name")]
         public string lastName { get; set; } = String.Empty;
 
+       
+        
+
         [Display(Name = "Hired Date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime dateHired { get; set; }
 
         [Display(Name = "Email")]
